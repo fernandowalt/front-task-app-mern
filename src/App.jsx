@@ -15,6 +15,7 @@ import { Projects } from "./pages/Projects";
 import { CreateProject } from "./pages/CreateProject";
 import { Project } from "./pages/Project";
 import { EditProject } from "./pages/EditProject";
+import { NewCollaborator } from "./pages/NewCollaborator";
 
 function App() {
 	return (
@@ -35,6 +36,8 @@ function App() {
 							<Route path="create-project" element={<CreateProject />} />
 							<Route path=":id" element={<Project />} />
 							<Route path="edit/:id" element={<EditProject />} />
+
+							<Route path="collaborators/:id" element={<NewCollaborator />} />
 						</Route>
 					</Routes>
 				</ProjectsProvider>

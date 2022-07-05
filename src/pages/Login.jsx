@@ -6,13 +6,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { Alert } from "../components/Alert";
 import clientAxios from "../config/clientAxios";
 import useAuth from "../hooks/useAuth";
+import useProjects from "../hooks/useProjects";
 
 export const Login = () => {
+	const { obtenerProyectos } = useProjects();
 	const [form, setForm] = useState({ email: "", password: "" });
 	const [alert, setalert] = useState({});
 	const { email, password } = form;
 
-	const { setAuth} = useAuth();
+	const { setAuth } = useAuth();
+	let navigate = useNavigate();
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -30,6 +33,9 @@ export const Login = () => {
 			setForm({ email: "", password: "" });
 
 			setAuth(data);
+			obtenerProyectos();
+
+			navigate("/projects");
 		} catch (error) {
 			const { msg } = error.response.data;
 			setalert({ msg: msg, error: true });
